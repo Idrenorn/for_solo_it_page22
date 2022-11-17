@@ -1,0 +1,86 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+td,
+th {
+    white-space: nowrap;
+    border-color: transparent;
+    border-right-color: var(--tui-positive-night);
+
+    &:last-child {
+        border-right-color: transparent;
+    }
+}
+
+tbody {
+    border-color: transparent;
+}
+
+tr:nth-child(even) td {
+    background: var(--tui-base-02);
+}
+
+.alive,
+.deceased {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+
+    &:before {
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+        background: var(--tui-base-04);
+    }
+}
+
+.alive:before {
+    background: var(--tui-success-fill);
+}
+
+.remove {
+    .transition(opacity);
+    opacity: 0;
+
+    tr:hover &,
+    tr:focus-within & {
+        opacity: 1;
+    }
+}
+.outline {
+  display: inline-block;
+  padding: 0.25rem;
+  margin: -0.25rem 0;
+
+  &_light {
+      background: #30406a;
+  }
+
+  &_dark {
+      background: #e5e7ea;
+  }
+}
+
+@iterations: 20;
+
+.loop (@i) when (@i > 0) {
+  .support-@{i} {
+      background-color: ~'var(--tui-support-@{i}, var(--tui-support-0@{i}))';
+  }
+  .loop(@i - 1);
+}
+.loop (@iterations);
+.island {
+  width: 20rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.hint {
+  font: var(--tui-font-text-s);
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
